@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00050.xsd">
+  
+<AR-PACKAGES>
+    <AR-PACKAGE UUID="cecd54d7-93b8-41ae-97a7-4c0bf1285579">
+      <SHORT-NAME>ARRoot</SHORT-NAME>
+      <ELEMENTS>
+        <IMPLEMENTATION-DATA-TYPE>
+          <SHORT-NAME>Boolean</SHORT-NAME>
+        </IMPLEMENTATION-DATA-TYPE>
+        <TRIGGER-INTERFACE>
+          <SHORT-NAME>ExternalTriggerForRainWipe</SHORT-NAME>
+          <TRIGGERS>
+            <TRIGGER/>
+          </TRIGGERS>
+        </TRIGGER-INTERFACE>
+        <TRIGGER-INTERFACE>
+          <SHORT-NAME>ExternalTriggerForRearWipe</SHORT-NAME>
+          <TRIGGERS>
+            <TRIGGER/>
+          </TRIGGERS>
+        </TRIGGER-INTERFACE>
+        <TRIGGER-INTERFACE>
+          <SHORT-NAME>ExternalTriggerForSingleWipe</SHORT-NAME>
+          <TRIGGERS>
+            <TRIGGER/>
+          </TRIGGERS>
+        </TRIGGER-INTERFACE>
+        <TRIGGER-INTERFACE>
+          <SHORT-NAME>ExternalTriggerForSpeedOfWiper</SHORT-NAME>
+          <TRIGGERS>
+            <TRIGGER/>
+          </TRIGGERS>
+        </TRIGGER-INTERFACE>
+        <TRIGGER-INTERFACE>
+          <SHORT-NAME>ExternalTriggerForWashAndWipe</SHORT-NAME>
+          <TRIGGERS>
+            <TRIGGER/>
+          </TRIGGERS>
+        </TRIGGER-INTERFACE>
+        <IMPLEMENTATION-DATA-TYPE>
+          <SHORT-NAME>Float</SHORT-NAME>
+        </IMPLEMENTATION-DATA-TYPE>
+        <SENSOR-ACTUATOR-SW-COMPONENT-TYPE>
+          <SHORT-NAME>RainSensor</SHORT-NAME>
+          <PORTS>
+            <P-PORT-PROTOTYPE>
+              <SHORT-NAME>RainSensorWrite</SHORT-NAME>
+            </P-PORT-PROTOTYPE>
+          </PORTS>
+          <INTERNAL-BEHAVIORS>
+            <SWC-INTERNAL-BEHAVIOR>
+              <SHORT-NAME>RainSensorIB</SHORT-NAME>
+              <RUNNABLES>
+                <RUNNABLE-ENTITY>
+                  <SHORT-NAME>RainSensorRunnable</SHORT-NAME>
+                  <DATA-WRITE-ACCESSS>
+                    <VARIABLE-ACCESS>
+                      <ACCESSED-VARIABLE>
+                        <LOCAL-VARIABLE-REF DEST="VARIABLE-DATA-PROTOTYPE">/ARRoot/RainSensorSRIF/</LOCAL-VARIABLE-REF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                  </DATA-WRITE-ACCESSS>
+                </RUNNABLE-ENTITY>
+              </RUNNABLES>
+            </SWC-INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </SENSOR-ACTUATOR-SW-COMPONENT-TYPE>
+        <SWC-IMPLEMENTATION>
+          <SHORT-NAME>RainSensorImp</SHORT-NAME>
+          <PROGRAMMING-LANGUAGE>C</PROGRAMMING-LANGUAGE>
+          <BEHAVIOR-REF DEST="SWC-INTERNAL-BEHAVIOR">/ARRoot/RainSensor/RainSensorIB</BEHAVIOR-REF>
+        </SWC-IMPLEMENTATION>
+        <SENDER-RECEIVER-INTERFACE>
+          <SHORT-NAME>RainSensorSRIF</SHORT-NAME>
+          <DATA-ELEMENTS>
+            <VARIABLE-DATA-PROTOTYPE>
+              <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/ARRoot/Boolean</TYPE-TREF>
+            </VARIABLE-DATA-PROTOTYPE>
+          </DATA-ELEMENTS>
+        </SENDER-RECEIVER-INTERFACE>
+        <CLIENT-SERVER-INTERFACE>
+          <SHORT-NAME>RainWipeCSIF</SHORT-NAME>
+          <OPERATIONS>
+            <CLIENT-SERVER-OPERATION>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE>
+                  <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/ARRoot/Boolean</TYPE-TREF>
+                  <DIRECTION>OUT</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+            </CLIENT-SERVER-OPERATION>
+          </OPERATIONS>
+        </CLIENT-SERVER-INTERFACE>
+        <SWC-IMPLEMENTATION>
+          <SHORT-NAME>RainWipeImp</SHORT-NAME>
+          <PROGRAMMING-LANGUAGE>C</PROGRAMMING-LANGUAGE>
+          <BEHAVIOR-REF DEST="SWC-INTERNAL-BEHAVIOR">/ARRoot/RainWiper/RainWiperIB</BEHAVIOR-REF>
+          <REQUIRED-RTE-VENDOR></REQUIRED-RTE-VENDOR>
+        </SWC-IMPLEMENTATION>
+        <SENSOR-ACTUATOR-SW-COMPONENT-TYPE>
+          <SHORT-NAME>RainWiper</SHORT-NAME>
+          <PORTS>
+            <P-PORT-PROTOTYPE>
+              <SHORT-NAME>RainWipe</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/ARRoot/RainWipeCSIF</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+          </PORTS>
+          <INTERNAL-BEHAVIORS>
+            <SWC-INTERNAL-BEHAVIOR>
+              <SHORT-NAME>RainWiperIB</SHORT-NAME>
+              <RUNNABLES>
+                <RUNNABLE-ENTITY>
+                  <SHORT-NAME>RainWiperRunnable</SHORT-NAME>
+                  <EXTERNAL-TRIGGERING-POINTS>
+                    <EXTERNAL-TRIGGERING-POINT>
+                      <TRIGGER-IREF>
+                        <P-TRIGGER-IN-ATOMIC-SWC-TYPE-INSTANCE-REF>
+                          <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ARRoot/RainWiper/RainWipe</CONTEXT-P-PORT-REF>
+                          <TARGET-TRIGGER-REF DEST="TRIGGER">/ARRoot/ExternalTriggerForRearWipe/</TARGET-TRIGGER-REF>
+                        </P-TRIGGER-IN-ATOMIC-SWC-TYPE-INSTANCE-REF>
+                      </TRIGGER-IREF>
+                    </EXTERNAL-TRIGGERING-POINT>
+                  </EXTERNAL-TRIGGERING-POINTS>
+                </RUNNABLE-ENTITY>
+              </RUNNABLES>
+            </SWC-INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </SENSOR-ACTUATOR-SW-COMPONENT-TYPE>
+        <SENSOR-ACTUATOR-SW-COMPONENT-TYPE>
+          <SHORT-NAME>RearWipe</SHORT-NAME>
+          <PORTS>
+            <P-PORT-PROTOTYPE>
+              <SHORT-NAME>RearWipe</SHORT-NAME>
+            </P-PORT-PROTOTYPE>
+          </PORTS>
+          <INTERNAL-BEHAVIORS>
+            <SWC-INTERNAL-BEHAVIOR>
+              <SHORT-NAME>RearWipeIB</SHORT-NAME>
+              <RUNNABLES>
+                <RUNNABLE-ENTITY>
+                  <SHORT-NAME>RearWipeRunnable</SHORT-NAME>
+                  <EXTERNAL-TRIGGERING-POINTS>
+                    <EXTERNAL-TRIGGERING-POINT>
+                      <TRIGGER-IREF>
+                        <P-TRIGGER-IN-ATOMIC-SWC-TYPE-INSTANCE-REF>
+                          <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ARRoot/RearWipe/RearWipe</CONTEXT-P-PORT-REF>
+                          <TARGET-TRIGGER-REF DEST="TRIGGER">/ARRoot/ExternalTriggerForRearWipe/</TARGET-TRIGGER-REF>
+                        </P-TRIGGER-IN-ATOMIC-SWC-TYPE-INSTANCE-REF>
+                      </TRIGGER-IREF>
+                    </EXTERNAL-TRIGGERING-POINT>
+                  </EXTERNAL-TRIGGERING-POINTS>
+                </RUNNABLE-ENTITY>
+              </RUNNABLES>
+            </SWC-INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </SENSOR-ACTUATOR-SW-COMPONENT-TYPE>
+        <CLIENT-SERVER-INTERFACE>
+          <SHORT-NAME>RearWipeCSIF</SHORT-NAME>
+          <OPERATIONS>
+            <CLIENT-SERVER-OPERATION>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE>
+                  <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/ARRoot/Boolean</TYPE-TREF>
+                  <DIRECTION>OUT</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+            </CLIENT-SERVER-OPERATION>
+          </OPERATIONS>
+        </CLIENT-SERVER-INTERFACE>
+        <SWC-IMPLEMENTATION>
+          <SHORT-NAME>RearWipeImp</SHORT-NAME>
+          <PROGRAMMING-LANGUAGE>C</PROGRAMMING-LANGUAGE>
+          <BEHAVIOR-REF DEST="SWC-INTERNAL-BEHAVIOR">/ARRoot/RearWipe/RearWipeIB</BEHAVIOR-REF>
+          <REQUIRED-RTE-VENDOR></REQUIRED-RTE-VENDOR>
+        </SWC-IMPLEMENTATION>
+        <CLIENT-SERVER-INTERFACE>
+          <SHORT-NAME>SingleWipeCSIF</SHORT-NAME>
+          <OPERATIONS>
+            <CLIENT-SERVER-OPERATION>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE>
+                  <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/ARRoot/Boolean</TYPE-TREF>
+                  <DIRECTION>OUT</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+            </CLIENT-SERVER-OPERATION>
+          </OPERATIONS>
+        </CLIENT-SERVER-INTERFACE>
+        <SWC-IMPLEMENTATION>
+          <SHORT-NAME>SingleWipeImp</SHORT-NAME>
+          <PROGRAMMING-LANGUAGE>C</PROGRAMMING-LANGUAGE>
+          <BEHAVIOR-REF DEST="SWC-INTERNAL-BEHAVIOR">/ARRoot/SingleWiper/SingleWiperIB</BEHAVIOR-REF>
+        </SWC-IMPLEMENTATION>
+        <SENSOR-ACTUATOR-SW-COMPONENT-TYPE>
+          <SHORT-NAME>SingleWiper</SHORT-NAME>
+          <PORTS>
+            <P-PORT-PROTOTYPE>
+              <SHORT-NAME>SingleWipe</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/ARRoot/SingleWipeCSIF</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+          </PORTS>
+          <INTERNAL-BEHAVIORS>
+            <SWC-INTERNAL-BEHAVIOR>
+              <SHORT-NAME>SingleWiperIB</SHORT-NAME>
+              <RUNNABLES>
+                <RUNNABLE-ENTITY>
+                  <SHORT-NAME>SingleWiperRunnable</SHORT-NAME>
+                  <EXTERNAL-TRIGGERING-POINTS>
+                    <EXTERNAL-TRIGGERING-POINT>
+                      <TRIGGER-IREF>
+                        <P-TRIGGER-IN-ATOMIC-SWC-TYPE-INSTANCE-REF>
+                          <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ARRoot/SingleWiper/SingleWipe</CONTEXT-P-PORT-REF>
+                          <TARGET-TRIGGER-REF DEST="TRIGGER">/ARRoot/ExternalTriggerForSingleWipe/</TARGET-TRIGGER-REF>
+                        </P-TRIGGER-IN-ATOMIC-SWC-TYPE-INSTANCE-REF>
+                      </TRIGGER-IREF>
+                    </EXTERNAL-TRIGGERING-POINT>
+                  </EXTERNAL-TRIGGERING-POINTS>
+                </RUNNABLE-ENTITY>
+              </RUNNABLES>
+            </SWC-INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </SENSOR-ACTUATOR-SW-COMPONENT-TYPE>
+        <SENSOR-ACTUATOR-SW-COMPONENT-TYPE>
+          <SHORT-NAME>SpeedOfWiper</SHORT-NAME>
+          <PORTS>
+            <P-PORT-PROTOTYPE>
+              <SHORT-NAME>SpeedOfWiper</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/ARRoot/SpeedOfWiperCSIF</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+          </PORTS>
+          <INTERNAL-BEHAVIORS>
+            <SWC-INTERNAL-BEHAVIOR>
+              <SHORT-NAME>SpeedOfWiperIB</SHORT-NAME>
+              <RUNNABLES>
+                <RUNNABLE-ENTITY>
+                  <SHORT-NAME>SpeedOfWiperRunnable</SHORT-NAME>
+                  <EXTERNAL-TRIGGERING-POINTS>
+                    <EXTERNAL-TRIGGERING-POINT>
+                      <TRIGGER-IREF>
+                        <P-TRIGGER-IN-ATOMIC-SWC-TYPE-INSTANCE-REF>
+                          <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ARRoot/SpeedOfWiper/SpeedOfWiper</CONTEXT-P-PORT-REF>
+                          <TARGET-TRIGGER-REF DEST="TRIGGER">/ARRoot/ExternalTriggerForSpeedOfWiper/</TARGET-TRIGGER-REF>
+                        </P-TRIGGER-IN-ATOMIC-SWC-TYPE-INSTANCE-REF>
+                      </TRIGGER-IREF>
+                    </EXTERNAL-TRIGGERING-POINT>
+                  </EXTERNAL-TRIGGERING-POINTS>
+                </RUNNABLE-ENTITY>
+              </RUNNABLES>
+            </SWC-INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </SENSOR-ACTUATOR-SW-COMPONENT-TYPE>
+        <CLIENT-SERVER-INTERFACE>
+          <SHORT-NAME>SpeedOfWiperCSIF</SHORT-NAME>
+          <OPERATIONS>
+            <CLIENT-SERVER-OPERATION S="">
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE>
+                  <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/ARRoot/Float</TYPE-TREF>
+                  <DIRECTION>OUT</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+            </CLIENT-SERVER-OPERATION>
+          </OPERATIONS>
+        </CLIENT-SERVER-INTERFACE>
+        <SWC-IMPLEMENTATION>
+          <SHORT-NAME>SpeedOfWiperImp</SHORT-NAME>
+          <PROGRAMMING-LANGUAGE>C</PROGRAMMING-LANGUAGE>
+          <BEHAVIOR-REF DEST="SWC-INTERNAL-BEHAVIOR">/ARRoot/SpeedOfWiper/SpeedOfWiperIB</BEHAVIOR-REF>
+        </SWC-IMPLEMENTATION>
+        <SENSOR-ACTUATOR-SW-COMPONENT-TYPE>
+          <SHORT-NAME>WashAndWipe</SHORT-NAME>
+          <PORTS>
+            <P-PORT-PROTOTYPE>
+              <SHORT-NAME>WashAndWipe</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/ARRoot/WashAndWipeCSIF</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+          </PORTS>
+          <INTERNAL-BEHAVIORS>
+            <SWC-INTERNAL-BEHAVIOR>
+              <SHORT-NAME>WashAndWipeIB</SHORT-NAME>
+              <RUNNABLES>
+                <RUNNABLE-ENTITY>
+                  <SHORT-NAME>WashAndWipeRunnable</SHORT-NAME>
+                  <EXTERNAL-TRIGGERING-POINTS>
+                    <EXTERNAL-TRIGGERING-POINT>
+                      <TRIGGER-IREF>
+                        <P-TRIGGER-IN-ATOMIC-SWC-TYPE-INSTANCE-REF>
+                          <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/ARRoot/WashAndWipe/WashAndWipe</CONTEXT-P-PORT-REF>
+                          <TARGET-TRIGGER-REF DEST="TRIGGER">/ARRoot/ExternalTriggerForWashAndWipe/</TARGET-TRIGGER-REF>
+                        </P-TRIGGER-IN-ATOMIC-SWC-TYPE-INSTANCE-REF>
+                      </TRIGGER-IREF>
+                    </EXTERNAL-TRIGGERING-POINT>
+                  </EXTERNAL-TRIGGERING-POINTS>
+                </RUNNABLE-ENTITY>
+              </RUNNABLES>
+            </SWC-INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </SENSOR-ACTUATOR-SW-COMPONENT-TYPE>
+        <CLIENT-SERVER-INTERFACE>
+          <SHORT-NAME>WashAndWipeCSIF</SHORT-NAME>
+          <OPERATIONS>
+            <CLIENT-SERVER-OPERATION>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE>
+                  <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/ARRoot/Boolean</TYPE-TREF>
+                  <DIRECTION>OUT</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+            </CLIENT-SERVER-OPERATION>
+          </OPERATIONS>
+        </CLIENT-SERVER-INTERFACE>
+        <SWC-IMPLEMENTATION>
+          <SHORT-NAME>WashAndWipeImp</SHORT-NAME>
+          <PROGRAMMING-LANGUAGE>C</PROGRAMMING-LANGUAGE>
+          <BEHAVIOR-REF DEST="SWC-INTERNAL-BEHAVIOR">/ARRoot/WashAndWipe/WashAndWipeIB</BEHAVIOR-REF>
+        </SWC-IMPLEMENTATION>
+        <SWC-IMPLEMENTATION>
+          <SHORT-NAME>WiperControllerImp</SHORT-NAME>
+          <PROGRAMMING-LANGUAGE>C</PROGRAMMING-LANGUAGE>
+          <BEHAVIOR-REF DEST="SWC-INTERNAL-BEHAVIOR">/ARRoot/WiperControllerSwType/WiperContolIB</BEHAVIOR-REF>
+        </SWC-IMPLEMENTATION>
+        <APPLICATION-SW-COMPONENT-TYPE>
+          <SHORT-NAME>WiperControllerSwType</SHORT-NAME>
+          <PORTS>
+            <R-PORT-PROTOTYPE>
+              <SHORT-NAME>RainSensorRead</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/ARRoot/RainSensorSRIF</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE>
+              <SHORT-NAME>RainWipekey</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/ARRoot/RainWipeCSIF</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE>
+              <SHORT-NAME>RearWipe</SHORT-NAME>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE>
+              <SHORT-NAME>SingleWipeKey</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/ARRoot/SingleWipeCSIF</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE>
+              <SHORT-NAME>SpeedOfWiper</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/ARRoot/SpeedOfWiperCSIF</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE>
+              <SHORT-NAME>WashAndWipe</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/ARRoot/WashAndWipeCSIF</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+          </PORTS>
+          <INTERNAL-BEHAVIORS>
+            <SWC-INTERNAL-BEHAVIOR>
+              <SHORT-NAME>WiperContolIB</SHORT-NAME>
+              <RUNNABLES>
+                <RUNNABLE-ENTITY>
+                  <SHORT-NAME>RainSensor</SHORT-NAME>
+                  <DATA-READ-ACCESSS>
+                    <VARIABLE-ACCESS>
+                      <ACCESSED-VARIABLE>
+                        <LOCAL-VARIABLE-REF DEST="VARIABLE-DATA-PROTOTYPE">/ARRoot/RainSensorSRIF/</LOCAL-VARIABLE-REF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                  </DATA-READ-ACCESSS>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY>
+                  <SHORT-NAME>RainWipe</SHORT-NAME>
+                  <SERVER-CALL-POINTS>
+                    <SYNCHRONOUS-SERVER-CALL-POINT>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ARRoot/WiperControllerSwType/RainWipekey</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/ARRoot/RainWipeCSIF/</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                  </SERVER-CALL-POINTS>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY>
+                  <SHORT-NAME>RearWipe</SHORT-NAME>
+                  <SERVER-CALL-POINTS>
+                    <SYNCHRONOUS-SERVER-CALL-POINT>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ARRoot/WiperControllerSwType/RearWipe</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/ARRoot/RearWipeCSIF/</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                  </SERVER-CALL-POINTS>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY>
+                  <SHORT-NAME>SingleWipe</SHORT-NAME>
+                  <SERVER-CALL-POINTS>
+                    <SYNCHRONOUS-SERVER-CALL-POINT>
+                      <SHORT-NAME></SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ARRoot/WiperControllerSwType/SingleWipeKey</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/ARRoot/SingleWipeCSIF/</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                  </SERVER-CALL-POINTS>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY>
+                  <SHORT-NAME>SpeedOfWiper</SHORT-NAME>
+                  <SERVER-CALL-POINTS>
+                    <SYNCHRONOUS-SERVER-CALL-POINT>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ARRoot/WiperControllerSwType/SpeedOfWiper</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/ARRoot/SpeedOfWiperCSIF/</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                  </SERVER-CALL-POINTS>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY>
+                  <SHORT-NAME>WashAndWipe</SHORT-NAME>
+                  <SERVER-CALL-POINTS>
+                    <SYNCHRONOUS-SERVER-CALL-POINT>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ARRoot/WiperControllerSwType/WashAndWipe</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/ARRoot/WashAndWipeCSIF/</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                  </SERVER-CALL-POINTS>
+                </RUNNABLE-ENTITY>
+              </RUNNABLES>
+            </SWC-INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </APPLICATION-SW-COMPONENT-TYPE>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES></AUTOSAR>
